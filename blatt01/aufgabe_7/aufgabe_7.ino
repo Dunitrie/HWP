@@ -33,6 +33,7 @@ bool current_state = HIGH;
 
 void setup() {
   for (int i = 2; i < 8; i++){
+    // Enable all pins, but put them on low    
     pinMode(i, OUTPUT);
     digitalWrite(i, LOW);
   }
@@ -48,7 +49,6 @@ void loop() {
   // It has to be the sime time on and off so divide by 2
   duration = 60 /frequency / 2;
   
-  // Read both digital and analog value of current Button
   //button_state = digitalRead(BUTTON);
   button_state = analogRead(BUTTON);
 
@@ -56,23 +56,28 @@ void loop() {
   if (button_state <= 50 && button_state > 0){
     // Check, if we already pushed
     if (current_state == HIGH){
+      current_state = LOW;
       starting_time = millis();
       // Stop old LED
       digitalWrite(lst[button_counter], LOW);
       // Choose new LED
       button_counter++;
       button_counter %= 6;
+      // We enable the LED (Need this variable to enable the pulsing)
       led_state = true;
+      // Enable new LED
       digitalWrite(lst[button_counter], HIGH);
       current_color = lst_color[button_counter];
     }
   }
+  // If we're not pushing right now, we enable to be pushed again
   else{
-    current_state = LOW;
+    current_state = HIGH;
   }
   // Potentially switch off the current LED
   current_duration = millis()-starting_time;
   if (current_duration > duration){
+    // Switch on or off
     led_state = !led_state;
     digitalWrite(lst[button_counter], led_state);
     starting_time = millis();
