@@ -33,7 +33,7 @@ bool current_state = HIGH;
 
 void setup() {
   for (int i = 2; i < 8; i++){
-    // Enable all pins, but put them on low    
+    // Enable all pins, but put them on low
     pinMode(i, OUTPUT);
     digitalWrite(i, LOW);
   }
@@ -110,6 +110,7 @@ void loop() {
 }
 
 void print_line(int idx){
+  // This function just prints a line empty
   lcd.setCursor(0, idx);
   for (int i=0; i < NUM_CHAR; i++){
     lcd.print(" ");
