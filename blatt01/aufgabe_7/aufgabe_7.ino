@@ -47,7 +47,7 @@ void loop() {
   //hier ist das Map von dem Potientometerwerten auf die gewünschte Frequenz... Bin mir aber auch nicht ganz sicher
   frequency = map(analogRead(A1), 0, 1023, 10, 500);
   // It has to be the sime time on and off so divide by 2
-  duration = 60 /frequency / 2;
+  duration = 60000 /frequency / 2;
   
   //button_state = digitalRead(BUTTON);
   button_state = analogRead(BUTTON);

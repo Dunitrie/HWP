@@ -47,7 +47,8 @@ void loop() {
   // Map the analog input TR1 with 10 bit to a defined frequency between 10 and 500 times per minute
   frequency = map(analogRead(A1), 0, 1023, 10, 500);
   // It has to be the some time on and off so divide by 2
-  duration = 6000 /frequency / 2;
+  // 60000 = 60 * 1000 miliseconds
+  duration = 60000 /frequency / 2;
   
   // Read both digital and analog value of current Button
   //button_state = digitalRead(BUTTON);
@@ -71,6 +72,7 @@ void loop() {
 
     // Check, if we already pushed
     if (current_state == HIGH){
+      current_state = LOW;
       starting_time = millis();
       // Stop old LED
       digitalWrite(lst[button_counter], LOW);
@@ -83,7 +85,7 @@ void loop() {
     }
   }
   else{
-    current_state = LOW;
+    current_state = HIGH;
   }
   // Potentially switch off the current LED
   current_duration = millis()-starting_time;
