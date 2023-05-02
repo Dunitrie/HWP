@@ -103,3 +103,12 @@ void loop() {
   lcd.print(current_color);
 
 }
+
+void print_line(int idx){
+  lcd.setCursor(0, idx);
+  for (int i=0; i < NUM_CHAR; i++){
+    lcd.print(" ");
+  }
+  lcd.setCursor(0, idx);
+}
+
