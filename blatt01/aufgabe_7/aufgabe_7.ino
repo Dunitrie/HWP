@@ -92,14 +92,30 @@ void loop() {
   lcd.print("V");
 
   lcd.setCursor(0,1);
+
   lcd.print("Button: ");
 
   if (button_value <= 50 && button_value >= 0){lcd.print("S1  ");}
-  else if (button_value <= 1023 && button_value >= 1000){lcd.print("S-  ");}
-  else if (button_value <= 250 && button_value >= 230){lcd.print("S2  ");}
-  else if (button_value <= 500 && button_value >= 310){lcd.print("S3  ");}
-  else if (button_value <= 700 && button_value >= 510){lcd.print("S4  ");}
-  else if (button_value <= 900 && button_value >= 710){lcd.print("S5  ");}
+  else if (button_value <= 1023 && button_value >= 1000){
+    refresh_button_type();
+    lcd.print("S-  ");
+    }
+  else if (button_value <= 250 && button_value >= 230){
+    refresh_button_type();
+    lcd.print("S2  ");
+    }
+  else if (button_value <= 500 && button_value >= 310){
+    refresh_button_type();
+    lcd.print("S3  ");
+    }
+  else if (button_value <= 700 && button_value >= 510){
+    refresh_button_type();
+    lcd.print("S4  ");
+    }
+  else if (button_value <= 900 && button_value >= 710){
+    refresh_button_type();
+    lcd.print("S5  ");
+    }
 
   lcd.setCursor(0,2);
   lcd.print(duration);
@@ -116,5 +132,10 @@ void print_line(int idx){
     lcd.print(" ");
   }
   lcd.setCursor(0, idx);
+}
+
+void refresh_button_type() {
+  lcd.print("  ");
+  lcd.setCursor(8,1);
 }
 
