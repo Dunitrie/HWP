@@ -1,13 +1,27 @@
-void setup() {
-pinMode(D1, OUTPUT);
-digitalWrite(D1, LOW);
-pinMode(D2, OUTPUT);
-digitalWrite(D2, LOW);
-pinMode(D5, OUTPUT);
-digitalWrite(D5, LOW);
-pinMode(D6, OUTPUT);
-digitalWrite(D6, LOW);
 
+// These are just in case you don't have the right board and need to define the variables in order not to get an error
+//const int D1 = 1;
+//const int D2 = 2;
+//const int D5 = 5;
+//const int D6 = 6; 
+//const int D9 = 9;
+//const int D8 = 9;
+
+const int SPEED_OF_SOUND = 340; // m/s
+
+void setup() {
+  Serial.begin(9600);
+  
+  pinMode(D1, OUTPUT);
+  digitalWrite(D1, LOW);
+  pinMode(D2, OUTPUT);
+  digitalWrite(D2, LOW);
+  pinMode(D5, OUTPUT);
+  digitalWrite(D5, LOW);
+  pinMode(D6, OUTPUT);
+  digitalWrite(D6, LOW);
+  pinMode(D8, OUTPUT);
+  digitalWrite(D8, LOW);
 }
 void loop() {
   // Turn the device
@@ -69,3 +83,26 @@ void turn(bool direction, uint16_t time, uint16_t speed){
   setMotor(1, direction, 0);
 }
 
+int measureDistance(int ultrasonicPin){
+  // Send a pulse
+  pinMode(ultrasonicPin, OUTPUT);
+  digitalWrite(ultrasonicPin, HIGH);
+  delay(10);
+
+  // Receive a pulse
+  digitalWrite(ultrasonicPin, LOW);
+  pinMode(ultrasonicPin, INPUT);
+  //pulseIn(Pin, KindOfSignal, WaitTime)
+  long pulseLength = pulseIn(ultrasonicPin, HIGH, 30);
+  Serial.print(pulseLength);
+
+  // Return the distance
+  if (pulseLength){
+    // We measure the distance as length of the pulse times speed of sound, which is 340 m/s
+    long distance = pulseLength * SPEED_OF_SOUND; // In m/s -> Divide by 100, if wanted 
+    return distance;
+  }
+  else{
+    return -1;
+  }
+}
