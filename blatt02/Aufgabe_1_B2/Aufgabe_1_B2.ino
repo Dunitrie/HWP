@@ -12,9 +12,9 @@ const int SPEED_OF_SOUND = 340; // m/s
 void setup() {
   Serial.begin(9600);
   
-  pinMode(D1, OUTPUT);
+  pinMode(D1, OUTPUT);  // right motor
   digitalWrite(D1, LOW);
-  pinMode(D2, OUTPUT);
+  pinMode(D2, OUTPUT);  // left motor
   digitalWrite(D2, LOW);
   pinMode(D5, OUTPUT);
   digitalWrite(D5, LOW);
@@ -33,6 +33,7 @@ void loop() {
 }
 
 void setMotor(bool motor, bool forward, uint16_t speed)  {
+  // sets right motor
   if (motor) {
     if (forward) {
       digitalWrite(D1, 0);
@@ -43,6 +44,7 @@ void setMotor(bool motor, bool forward, uint16_t speed)  {
       analogWrite(D1, speed);
     }
   }
+  // sets left motor
   else{
     if (forward) {
     digitalWrite(D5, 0);
@@ -55,31 +57,33 @@ void setMotor(bool motor, bool forward, uint16_t speed)  {
   }
 }
 
-void drive(bool direction, uint16_t time, uint16_t speed) {
+void drive(bool direction, uint16_t duration, uint16_t speed) {
   // If direction==0: Drive backwards, otherwise forward with speed speed
   unsigned long starting_time = millis();
 
-  while (millis() - starting_time < time) {
+  while (millis() - starting_time < duration) {
     setMotor(0, direction, speed);
     setMotor(1, direction, speed);
   }
+  // stops motors after a certain duration
   setMotor(0, direction, 0);
   setMotor(1, direction, 0);
 }
 
-void turn(bool direction, uint16_t time, uint16_t speed){
+void turn(bool direction, uint16_t duration, uint16_t speed){
   unsigned long starting_time = millis();
-
-  while (millis() - starting_time < time){
-    if (direction) {
+  // motors turn in opposite directions for the turn
+  while (millis() - starting_time < duration){
+    if (direction) {  // turns right
       setMotor(0, direction, speed);
       setMotor(1, !direction, speed);
     }
-    else{
+    else{  // turns left
       setMotor(1, direction, speed);
       setMotor(0, !direction, speed);
     }
   }
+  // stops motors
   setMotor(0, direction, 0);
   setMotor(1, direction, 0);
 }
