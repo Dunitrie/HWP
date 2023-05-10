@@ -91,6 +91,7 @@ void loop() {
 }
 
 void setMotor(bool forward, bool motor,  uint16_t speed)  {
+  // Choose, which wheel to turn on
   if (motor) {
     if (!forward) {
       // WE just set the speed of the motor in question
@@ -115,6 +116,7 @@ void setMotor(bool forward, bool motor,  uint16_t speed)  {
 }
 
 void stopAllMotors(){
+  // Set all motors to zero
   setMotor(0, 0, 0);
   setMotor(0, 1, 0);
   setMotor(1, 0, 0);
@@ -137,12 +139,14 @@ void drive(bool direction, uint16_t time, uint16_t speed) {
 
 void turn(bool direction, uint16_t time, uint16_t speed){
   unsigned long starting_time = millis();
-
+  // start the turn
   while (millis() - starting_time < time){
+    // Turn one direction
     if (direction) {
       setMotor(1, right, speed);
       setMotor(0, left, speed);
     }
+    // Turn the other direction
     else{
       setMotor(1, left, speed);
       setMotor(0, right, speed);
@@ -194,22 +198,17 @@ void handleClient() {
   if (request.indexOf("GET /pollUS") >= 0) {
     Serial.println("Polling");
     double us1, us2, us3 = -1;
-    // Insert your code here
     us1 = measureDistance(US1_PIN);
     us2 = measureDistance(US2_PIN);
     us3 = measureDistance(US3_PIN);
-
 
     // Send US data to website
     client.printf("{\"US1\":%.2f, \"US2\":%.2f, \"US3\":%.2f}", us1, us2, us3);
     
   // Insert code to make the d-pad control working
   // Start by pressing the buttons of the d pad and watch the serial console to see how the get requests look.
-
-  
   // Serve initial Website
   } else if (request.indexOf("GET /up") >= 0) {
-    //drive(bool direction, uint16_t time, uint16_t speed) {
     // direction = true -> Forward
     drive(true, 300, 200);
   } else if (request.indexOf("GET /back") >= 0) {
