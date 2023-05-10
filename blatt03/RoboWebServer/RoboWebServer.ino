@@ -5,13 +5,11 @@
 
 const bool left = true;
 const bool right = false;
-//const bool forward = true;
-//const bool backward = false;
 
 // Add your wifi credentials here
-const char* ssid     = "Fairphone";
-const char* password = "12344321";
-
+const char* ssid     = "Martin Router King Jr.";
+const char* password = "I_Have_A_Str34m";
+const byte regular_speed = 200;
 uint16_t SPEED_OF_SOUND = 340;
 
 // Webserver on port 80 (standard http port)
@@ -36,7 +34,8 @@ const uint8_t motorPins[] = {MOTOR_A1_PIN, MOTOR_A2_PIN, MOTOR_B1_PIN, MOTOR_B2_
 #define US3_PIN D3
 const uint8_t usPins[] = {US1_PIN, US2_PIN, US3_PIN};
 
-//#define true true
+bool tesla_state = false;
+float detect_distance = 0.5;
 
 void setup() {
   // Init serial
@@ -178,6 +177,20 @@ double measureDistance(uint8_t ultrasonicPin){
   }
 }
 
+void tesla(double us1, double us2, double us3){
+  // Do what it's supposed to in the tesla state
+  bool left_free = (us1 > detect_distance);
+  bool front_free = (us2 > detect_distance);
+  bool right_free = (us3 > detect_distance);
+  if (left_free && front_free && right_free){
+    drive(true, 200, regular_speed);
+  } else if (left_free){
+    turn(left, 200, regular_speed);
+  } else if (right_free){
+    turn(right, 200, regular_speed);
+  }
+  
+}
 
 void handleClient() {
   // Check if a client has connected
@@ -195,9 +208,9 @@ void handleClient() {
   // print header message
   client.println(header);
   // Check for corresponding get message  
+  double us1, us2, us3 = -1;
   if (request.indexOf("GET /pollUS") >= 0) {
     Serial.println("Polling");
-    double us1, us2, us3 = -1;
     us1 = measureDistance(US1_PIN);
     us2 = measureDistance(US2_PIN);
     us3 = measureDistance(US3_PIN);
@@ -210,19 +223,31 @@ void handleClient() {
   // Serve initial Website
   } else if (request.indexOf("GET /up") >= 0) {
     // direction = true -> Forward
-    drive(true, 300, 200);
+    drive(true, 300, regular_speed);
   } else if (request.indexOf("GET /back") >= 0) {
-    drive(false, 300, 200);
+    drive(false, 300, regular_speed);
   } else if (request.indexOf("GET /left") >= 0) {
     //void turn(bool direction, uint16_t time, uint16_t speed){
-    turn(left, 300, 200);
+    turn(left, 300, regular_speed);
   } else if (request.indexOf("GET /right") >= 0) {
-    turn(right, 300, 200);
+    turn(right, 300, regular_speed);
+  } else if (request.indexOf("Get /Tesla") >= 0) {
+    if (!tesla_state){
+      tesla_state = true;
+    } else{
+      stopAllMotors();
+      tesla_state = false;
+    }
   } else {
     // Finish HTTP-Request with a newline (thats cruical)
     client.flush();
     client.println(page);
     client.println();
   }
+  // Always do this, when we're in Tesla state
+  if (tesla_state){
+    tesla(us1, us2, us3);
+  }
+  
   
 }
