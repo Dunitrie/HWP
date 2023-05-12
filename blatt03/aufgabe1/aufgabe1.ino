@@ -1,7 +1,5 @@
 void setup() {
   // put your setup code here, to run once:
-  DDRB |= (1<<PB5);
-  PORTB &= ~(1 << PB5)
 }
 
 void loop() {
@@ -14,9 +12,13 @@ void loop() {
 
 
 void setPin13(bool high) {
+    //set pin 13 as output and initial low
+  DDRB |= (1<<PB5);
+  PORTB &= ~(1 << PB5);
+  //set LED on if bool == high, else set LED off
   if (high) {
-    PORTB |= (1 << PB5)
+    PORTB |= (1 << PB5);
   } else {
-    PORTB &= ~(1 << PB5)
+    PORTB &= ~(1 << PB5);
   }
 }
