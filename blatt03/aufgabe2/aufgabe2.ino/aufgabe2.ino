@@ -12,7 +12,7 @@ void setup() {
   TCCR1B |= (1 << CS11);
   TCCR1B |= (1 << CS10);
   //CTC-MODE
-  TCCR1A |= (1 << WGM12);
+  TCCR1B |= (1 << WGM12);
   //Set output compare register A
   OCR1A = 60;
   //enable interrupt
