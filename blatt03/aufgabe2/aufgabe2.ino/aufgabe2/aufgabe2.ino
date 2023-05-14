@@ -2,7 +2,9 @@ bool toggle = false;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(13, OUTPUT);
+  DDRB |= (1 << PB4);
+  PORTB &= ~(1 << PB4);
+
   cli();
   //reset control registers
   TCCR1A = 0;
@@ -30,7 +32,7 @@ void loop() {
 
 }
 ISR(TIMER1_COMPA_vect) {
-  PINB |= (1 << 5);
+  PINB |= (1 << 4);
 }
 
 void setTimer1Freq(){
