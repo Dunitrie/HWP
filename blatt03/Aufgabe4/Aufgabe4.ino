@@ -41,10 +41,10 @@ void setTimer1Freq(uint16_t frequency){
   // setTimer1Freq();
 }
 
-long return_OCR1A(uint16_t frequency, uint16_t prescaler){
+uint16_t return_OCR1A(uint16_t frequency, uint16_t prescaler){
   // F_CPU is the clock frequency
   // Derived from p.99 datasheet
-  long val = F_CPU / 2 / prescaler / frequency - 1;
+  uint16_t val = (double)F_CPU / 2 / prescaler / frequency - 1;
   ///Serial.println(val);
   return val;
 }
