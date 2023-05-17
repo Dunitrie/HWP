@@ -9,7 +9,6 @@ void setup() {
   //reset control registers
   TCCR1A = 0;
   TCCR1B = 0;
-  TIMSK1 = 0;
   // We want to toggle OCR1A on pin 10
   // Timer Counter Control Register 1 
   // Toggle Pin when OCRA1 value is reached
