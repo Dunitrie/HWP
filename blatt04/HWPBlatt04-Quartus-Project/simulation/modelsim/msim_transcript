@@ -1,0 +1,50 @@
+# Reading pref.tcl
+# do HalfAdder_run_msim_gate_vhdl.do
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work gate_work 
+# Copying C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {HalfAdder.vho}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:42:36 on May 21,2023
+# vcom -reportprogress 300 -93 -work work HalfAdder.vho 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VITAL_Primitives
+# -- Loading package cycloneive_atom_pack
+# -- Loading package cycloneive_components
+# -- Compiling entity hard_block
+# -- Compiling architecture structure of hard_block
+# -- Compiling entity MUX2
+# -- Compiling architecture structure of MUX2
+# End time: 20:42:36 on May 21,2023, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vcom -93 -work work {C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht}
+# Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:42:36 on May 21,2023
+# vcom -reportprogress 300 -93 -work work C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity MUX2_vhd_tst
+# -- Compiling architecture MUX2_arch of MUX2_vhd_tst
+# ** Error: C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht(39): near "select": (vcom-1576) expecting IDENTIFIER.
+# ** Error: C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht(55): near "select": syntax error
+# ** Error: C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht(57): Statement cannot be labeled.
+# ** Note: C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht(71): VHDL Compiler exiting
+# End time: 20:42:36 on May 21,2023, Elapsed time: 0:00:00
+# Errors: 3, Warnings: 0
+# ** Error: C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/vcom failed.
+# Error in macro ./HalfAdder_run_msim_gate_vhdl.do line 10
+# C:/intelFPGA_lite/20.1/modelsim_ase/win32aloem/vcom failed.
+#     while executing
+# "vcom -93 -work work {C:/Users/Frank/Documents/HWPBlatt04/simulation/modelsim/MUX2.vht}"
