@@ -1,0 +1,21 @@
+|myCounter
+count => sixBitCounter[0].CLK
+count => sixBitCounter[1].CLK
+count => sixBitCounter[2].CLK
+count => sixBitCounter[3].CLK
+count => sixBitCounter[4].CLK
+count => sixBitCounter[5].CLK
+rst => sixBitCounter[0].ACLR
+rst => sixBitCounter[1].ACLR
+rst => sixBitCounter[2].ACLR
+rst => sixBitCounter[3].ACLR
+rst => sixBitCounter[4].ACLR
+rst => sixBitCounter[5].ACLR
+countOut[0] <= sixBitCounter[0].DB_MAX_OUTPUT_PORT_TYPE
+countOut[1] <= sixBitCounter[1].DB_MAX_OUTPUT_PORT_TYPE
+countOut[2] <= sixBitCounter[2].DB_MAX_OUTPUT_PORT_TYPE
+countOut[3] <= sixBitCounter[3].DB_MAX_OUTPUT_PORT_TYPE
+countOut[4] <= sixBitCounter[4].DB_MAX_OUTPUT_PORT_TYPE
+countOut[5] <= sixBitCounter[5].DB_MAX_OUTPUT_PORT_TYPE
+
+
