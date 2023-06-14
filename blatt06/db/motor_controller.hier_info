@@ -1,0 +1,18 @@
+|motor_controller
+clk_50 => ~NO_FANOUT~
+speed[0] => ~NO_FANOUT~
+speed[1] => ~NO_FANOUT~
+speed[2] => ~NO_FANOUT~
+speed[3] => ~NO_FANOUT~
+speed[4] => ~NO_FANOUT~
+speed[5] => ~NO_FANOUT~
+speed[6] => ~NO_FANOUT~
+speed[7] => ~NO_FANOUT~
+speed[8] => ~NO_FANOUT~
+speed[9] => ~NO_FANOUT~
+direction => motor_signal1.DATAIN
+direction => motor_signal2.DATAIN
+motor_signal1 << direction.DB_MAX_OUTPUT_PORT_TYPE
+motor_signal2 << direction.DB_MAX_OUTPUT_PORT_TYPE
+
+

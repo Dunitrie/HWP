@@ -1,0 +1,21 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "motor_signal1",
+					"strict" : false
+				},
+				{
+					"name" : "motor_signal2",
+					"strict" : false
+				},
+				{
+					"name" : "direction",
+					"strict" : false
+				}
+			]
+		}
+	]
+}
