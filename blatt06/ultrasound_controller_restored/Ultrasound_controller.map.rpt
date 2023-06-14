@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Ultrasound_controller
-Wed Jun 14 12:59:40 2023
+Wed Jun 14 16:48:08 2023
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -37,7 +37,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Jun 14 12:59:40 2023           ;
+; Analysis & Synthesis Status        ; Failed - Wed Jun 14 16:48:08 2023           ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; Ultrasound_controller                       ;
 ; Top-level Entity Name              ; ultrasound_controller                       ;
@@ -162,7 +162,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Jun 14 12:59:30 2023
+    Info: Processing started: Wed Jun 14 16:47:59 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Ultrasound_controller -c Ultrasound_controller
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -180,11 +180,11 @@ Info (12021): Found 2 design units, including 1 entities, in source file vhdl/co
     Info (12023): Found entity 1: controller File: C:/Users/demo/Documents/Studium/ESE/SS23/Hardware_Praktikum/HWP/blatt06/ultrasound_controller_restored/vhdl/controller.vhd Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file block/ultrasound_reader.bdf
     Info (12023): Found entity 1: ultrasound_reader
-Error (10327): VHDL error at ultrasound_controller.vhd(56): can't determine definition of operator ""="" -- found 0 possible definitions File: C:/Users/demo/Documents/Studium/ESE/SS23/Hardware_Praktikum/HWP/blatt06/ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 56
+Error (10482): VHDL error at ultrasound_controller.vhd(131): object "loop_counter" is used but not declared File: C:/Users/demo/Documents/Studium/ESE/SS23/Hardware_Praktikum/HWP/blatt06/ultrasound_controller_restored/vhdl/ultrasound_controller.vhd Line: 131
 Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 4775 megabytes
-    Error: Processing ended: Wed Jun 14 12:59:40 2023
-    Error: Elapsed time: 00:00:10
+    Error: Peak virtual memory: 4773 megabytes
+    Error: Processing ended: Wed Jun 14 16:48:08 2023
+    Error: Elapsed time: 00:00:09
     Error: Total CPU time (on all processors): 00:00:23
 
 
