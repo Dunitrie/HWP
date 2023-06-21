@@ -1,0 +1,41 @@
+init0 [00110001]: to Register 0x31-DATA_FORMAT
+01001000
+SELF_TEST 	[0]: Disable self-tests force
+SPI 		[1]: Set to 3-wire SPI mode
+INT_INVERT 	[0]:
+D4		[0]: Always 0
+FULL_RES	[1]: Full resolution mode
+Justify 	[0]: Right-justified mode with sign extension
+Range		[00]: g Range to +- 2g
+
+init1 [00100100]: to Register 0x24-THRESH_ACT
+
+Threshold value for detecting activity set to 2[00000010]*62.5 mg/LSB
+
+init2 [00101100]: to Register 0x2c-BW_RATE
+D7		[0]: Always 0
+D6		[0]: Always 0
+D5		[0]: Always 0
+D4		[0]: Normal Operation
+Rate		[1001]: Bandwidth is set to 25Hz
+
+
+init3 [00101110]: to Register 0x2e-INT_ENABLE
+DATA_READY	[0]: No DATA_READY Interrupts
+SINGLE_TAP	[0]: No SINGLE_TAP Interrupts
+DOUBLE_TAP	[0]: No DOUBLE_TAP Interrupts
+Acitivity	[1]: Activity Interrupts available
+Inactivity	[0]: No Inactivity Interrupts
+FREE_FALL	[0]: No FREE_FALL Interrupts
+Watermark	[0]: No Watermark Interrupts
+Overrun		[0]: No Overrun Interrupts
+
+init4 [00101101]: to Register 0x2D-POWER_CTL
+00001000
+D7		[0]: Always 0
+D6		[0]: Always 0
+Link		[0]: Inactivity and Activity functions are concurrent (Inactivity is disabled anyway)
+AUTO_SLEEP	[0]: Disable automatic switching to sleep mode Inactivity is disabled anyway)
+Measure		[1]: Place into measurement mode
+Sleep		[0]: Normal mode (no sleep mode)
+Wakeup		[00]:Frequency of Readings in Sleep mode is set to 8Hz
