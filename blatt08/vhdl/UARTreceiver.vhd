@@ -1,25 +1,25 @@
-−− example for a state machine with timed state transitions
+-- example for a state machine with timed state transitions
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity UARTreceiver is port(
-	clk_50: in std_logic; −− 50MHzclock
+	clk_50: in std_logic; -- 50MHzclock
 	serial_input: in std_logic;
 	
 	heading_int: out std_logic_vector(7 downto 0);
-	dataReady: out std_logic;
+	dataReady: out std_logic
 ) ;
 end UARTreceiver;
 
 architecture behavior of UARTreceiver is
-
 	-- internal counter , used to measure timing
 	-- max count : 2^7-1
-	signal icnt: std_logic_vector(7 downto 0 );
+	signal icnt: std_logic_vector(7 downto 0);
 	type state_type is (idle, start_bit, s0, s1, s2, s3, s4, s5, s6, s7, stop_bit);
-	signal state: state_type:= init;
-	signal bitrate_clk: std_logic = 0;
+	signal state : state_type := idle;
+
+	signal bitrate_clk: std_logic := '0';
 	
 begin
 	process(clk_50)
@@ -27,22 +27,26 @@ begin
 		if rising_edge(clk_50) then
 			-- 
 			if icnt = "1000001" then -- 5000000/38400/2 in binary => So we have a rising_edge in BitRate in bitrate_signal
-				icnt<= (others => '0')
+				icnt<= (others => '0');
 				bitrate_clk <= not bitrate_clk;
 			else
 				icnt <= std_logic_vector(unsigned(icnt) + 1);
-	end 
+			end if;
+		end if;
+	end process; 
 
 	
 	
 	-- process for the state transitions
-	process(bitrate_clk)
+	process(bitrate_clk, serial_input, state)
 	begin
+	
 		if falling_edge(serial_input) and state = idle then
-			icnt <= (others = '0')
+			icnt <= (others => '0');
 			bitrate_clk <= '1';
 			
 			state <= start_bit;
+		end if;
 			
 		-- falling_edge => Middle of the bitrate_clk-cycle
 		if falling_edge(bitrate_clk) then
@@ -93,23 +97,10 @@ begin
 
 				-- goto state s0
 				state <= idle;
-				dataReady <= 1;
+				dataReady <= '1';
 
-				end if;
 			end if;
-		end if ;
-	end process;
-
-	-- process to control the output
-	process(state)
-	begin
-		if state = init then
-			someOutput <= ’ 0 ’ ;
-		elsif state = s0 then
-			someOutput <= ’ 1 ’ ;
-		else
-			someOutput <= ’ 0 ’ ;
-		end if ;
+		end if;
 	end process;
 end behavior;
 
