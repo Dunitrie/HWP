@@ -33,23 +33,20 @@ begin
 				icnt <= std_logic_vector(unsigned(icnt) + 1);
 			end if;
 		end if;
-	end process; 
-
-	
-	
+	end process;
+		
 	-- process for the state transitions
-	process(bitrate_clk, serial_input, state)
+	process(bitrate_clk)
 	begin
 	
 		if falling_edge(serial_input) and state = idle then
 			icnt <= (others => '0');
 			bitrate_clk <= '1';
-			
-			state <= start_bit;
+		   state <= start_bit;
 		end if;
-			
+		
 		-- falling_edge => Middle of the bitrate_clk-cycle
-		if falling_edge(bitrate_clk) then
+		elsif falling_edge(bitrate_clk) then
 			if state = start_bit then
 				-- do nothing
 				state <= s0 ;
