@@ -1,0 +1,29 @@
+if button:
+	flag = True;
+	
+
+turn(0)=left
+turn(1)=right
+turn(2)=right
+turn(3)=stop
+
+wie drehen wir uns sinnvoll(drehratensensor)?
+
+if flag:
+	signal = measure_ultrasonic()
+	dist = signal_to_dist(signal)
+	
+	
+	if dist:
+		if dist < 60cm:
+			wall_angle = calc_angle_to_wall(dist)
+			turn_according_to_wall_angle(wall_angle)
+			turn(run_idx)
+		else:
+			
+			drive()
+
+
+
+	
+	
